@@ -33,3 +33,12 @@ class InventorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Inventory
         fields = ['id', 'name', 'type', 'language', 'tags', 'metadata']
+
+
+class InventoryCreatedAfterQuerySerializer(serializers.Serializer):
+    date = serializers.DateField(required=True)
+
+    def validate_date(self, value):
+        if not value:
+            raise serializers.ValidationError("A valid date is required in the format YYYY-MM-DD.")
+        return value
