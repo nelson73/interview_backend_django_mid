@@ -18,3 +18,8 @@ class OrderSerializer(serializers.ModelSerializer):
     class Meta:
         model = Order
         fields = ['id', 'inventory', 'start_date', 'embargo_date', 'tags', 'is_active']
+
+
+class OrderDateRangeFilterSerializer(serializers.Serializer):
+    start_date = serializers.DateField(required=True)
+    embargo_date = serializers.DateField(required=True)
